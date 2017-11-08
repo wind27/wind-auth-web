@@ -1,0 +1,4 @@
+/** {margin: 0;padding: 0;}*/
+#image_preview {width:700px;margin: 0 auto;font-size: 0;}
+#image_preview li {display: inline-block;width: 32%;margin-left: 1%;padding-top: 1%;}
+#image_preview li img {width: 100%;}
