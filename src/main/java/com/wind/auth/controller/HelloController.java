@@ -1,6 +1,6 @@
 package com.wind.auth.controller;
 
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wind.auth.remote.HelloRemote;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

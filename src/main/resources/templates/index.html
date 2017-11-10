@@ -2,13 +2,28 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>首页</title>
+    <script th:src="@{/js/lib/jquery1.10.2.min.js}"></script>
+    <link th:href="''+ @{/css/common/common.css} + '?v=' + ${name}" rel="stylesheet"/>
+    <script th:src="@{/js/imageShow.js}"></script>
+
+    <style type="text/css">
+
+    </style>
 </head>
 <body>
+
+<!-- header start -->
+<div th:class="header" th:include="common/header :: header (${menus}, ${name}) "></div>
+<!-- header end -->
+
+<!-- container start -->
+<div th:class="container">
     <span th:text="${name}+', welcome home page !!!'"></span>
+</div>
+<!-- container end -->
+
+<!-- footer start -->
+<div th:class="footer" th:include="common/footer :: copyright (${name}) "></div>
+<!-- footer end -->
 </body>
-<br/>
-<a th:href="@{/}">首页</a><br/>
-<a th:href="@{/user}">用户管理</a><br/>
-<a th:href="@{/role}">角色管理</a><br/>
-<a th:href="@{/permission}">权限管理</a>
 </html>
