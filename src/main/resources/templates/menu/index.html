@@ -3,9 +3,7 @@
 <head>
     <title>首页</title>
     <script th:src="@{/js/lib/jquery1.10.2.min.js}"></script>
-
-    <script th:src="@{'/js/header.js?v='+${v}}"></script>
-    <link th:href="@{'/css/common/common.css?v='+${v}}" rel="stylesheet"/>
+    <link th:href="@{'/css/common/common.css?v=' + ${name}}" rel="stylesheet"/>
 </head>
 <body>
 

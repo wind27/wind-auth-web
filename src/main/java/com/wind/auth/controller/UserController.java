@@ -20,7 +20,6 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
-
     @RequestMapping("/user/{id}")
     public String imageShow(Model model, @PathVariable("id") long id) {
         if(id<=0) {

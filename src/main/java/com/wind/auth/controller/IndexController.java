@@ -53,32 +53,51 @@ public class IndexController {
         menuList.add(menu);
 
         model.addAttribute("name", name);
+        model.addAttribute("v", System.currentTimeMillis());
         model.addAttribute("menus", menuList);
 
         return "index";
     }
 
-    @RequestMapping("/user")
-    public String user(Model model) {
-        return "user";
+    //菜单管理页面跳转 start
+    @RequestMapping("/menu")
+    public String menu(Model model) {
+        return "menu/index";
     }
+    //菜单管理页面跳转 end
+
+    //应用管理页面跳转 start
+    @RequestMapping("/app")
+    public String app(Model model) {
+        return "app/index";
+    }
+    //应用管理页面跳转 end
+
+    //用户组管理页面跳转 start
+    @RequestMapping("/group")
+    public String group(Model model) {
+        return "group/index";
+    }
+    //用户组管理页面跳转 end
+
+    //角色页面跳转 start
     @RequestMapping("/role")
     public String role(Model model) {
-        return "role";
+        return "role/index";
     }
+    //角色页面跳转 end
+
+    //权限管理页面跳转 start
     @RequestMapping("/permission")
     public String permission(Model model) {
-        return "permission";
+        return "permission/index";
     }
+    //权限管理页面跳转 end
+
 
     @RequestMapping("/imageShow")
     public String imageShow(Model model) {
         return "imageShow";
-    }
-
-    @RequestMapping("/footer")
-    public String footer(Model model) {
-        return "common/footer";
     }
 
 }
