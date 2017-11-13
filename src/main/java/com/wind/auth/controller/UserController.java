@@ -5,10 +5,11 @@ import com.wind.auth.service.IUserService;
 import com.wind.common.ErrorCode;
 import com.wind.utils.JsonResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Date;
 
 /**
  * UserController
@@ -17,12 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
  **/
 @RestController
 public class UserController {
+    //    @Reference
     @Autowired
     private IUserService userService;
 
 
     @RequestMapping("/user/{id}")
-    public String imageShow(Model model, @PathVariable("id") long id) {
+    public String imageShow( @PathVariable("id") long id) {
         if(id<=0) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
         }
@@ -31,5 +33,17 @@ public class UserController {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
         }
         return JsonResponseUtil.ok(user);
+    }
+
+    @RequestMapping("save")
+    public String saveUser(){
+        User user = new User();
+        user.setCreateTime(new Date());
+        user.setRealname("realname");
+        user.setUsername("username");
+        if (userService.save(user)==null){
+            return JsonResponseUtil.fail(ErrorCode.ERROR);
+        }
+        return JsonResponseUtil.ok();
     }
 }
