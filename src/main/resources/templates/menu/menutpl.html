@@ -1,0 +1,18 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="menu_list">
+    <script id="tpl_list_menu" type="text/template">
+        <table border="1" cellpadding="3" cellspacing="0" style="width: 80%;margin:auto;">
+            <tr>
+                <th>名称</th>
+                <th>url</th>
+            </tr>
+            {@each menus as menu,index}
+            <tr>
+                <td>${menu.name}</td>
+                <td>${menu.url}</td>
+            </tr>
+            {@/each}
+        </table>
+    </script>
+</div>
+</html>

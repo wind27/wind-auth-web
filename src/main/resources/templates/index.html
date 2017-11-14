@@ -2,10 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>首页</title>
-    <script th:src="@{/js/lib/jquery1.10.2.min.js}"></script>
-
-    <script th:src="@{'/js/header.js?v='+${v}}"></script>
     <link th:href="@{'/css/common/common.css?v='+${v}}" rel="stylesheet"/>
+    <script src="/js/lib/require.js" data-main="js/index.js?v=3122"></script>
 </head>
 <body>
 
@@ -15,7 +13,7 @@
 
 <!-- container start -->
 <div th:class="container">
-    <span th:text="${name}+', welcome home page !!!'"></span>
+    <!--<span th:text="${name}+', welcome home page !!!'"></span>-->
 </div>
 <!-- container end -->
 

@@ -1,21 +1,21 @@
-<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Title</title>
-</head>
-<body>
 <div th:fragment="header (menus, name)">
-    <div>
+    <script id="header_tpl" type="text/template">
+        {@each menus as menu,index}
+        <li><a href="${menu.url}">${menu.name}</a></li>
+        {@/each}
+    </script>
+
+    <div class="div_header_img">
         <img width="50px" height="50px;" src="../image/tmp/1.png" alt="图片1" style="display: block;float: left;"/>
     </div>
-    <div>
-        <ul style="margin-top:2px;">
-            <li th:each="menu, menuStat : ${menus}"><a th:href="${menu.url}" th:text="${menu.name}"></a></li>
+    <div class="div_header_menus">
+        <ul>
+            <!--<li th:each="menu, menuStat : ${menus}"><a th:href="${menu.url}" th:text="${menu.name}"></a></li>-->
         </ul>
     </div>
-    <div>
+    <div class="div_header_user">
         <label th:text="'欢迎: ' + ${name}" style="line-height: 70px;"></label>
     </div>
 </div>
-</body>
 </html>

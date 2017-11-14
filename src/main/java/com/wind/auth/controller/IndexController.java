@@ -25,37 +25,8 @@ public class IndexController {
         if(StringUtils.isEmpty(name)) {
             name = "wind";
         }
-
-        List<Menu> menuList = new ArrayList<>();
-        Menu menu = new Menu();
-        menu.setName("用户管理");
-        menu.setUrl("/user");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("菜单管理");
-        menu.setUrl("/menu");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("用户组管理");
-        menu.setUrl("/group");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("角色管理");
-        menu.setUrl("/role");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("权限管理");
-        menu.setUrl("/permission");
-        menuList.add(menu);
-
         model.addAttribute("name", name);
         model.addAttribute("v", System.currentTimeMillis());
-        model.addAttribute("menus", menuList);
-
         return "index";
     }
 

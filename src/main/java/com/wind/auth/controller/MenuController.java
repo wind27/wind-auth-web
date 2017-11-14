@@ -7,7 +7,6 @@ import com.wind.common.ErrorCode;
 import com.wind.utils.JsonResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,48 +17,58 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * CommonController 公用数据信息管理
+ * UserController
  *
  * @author qianchun 17/11/1
  **/
-@RestController
-public class CommonController {
-    @Autowired
-    private IUserService userService;
-
-    @RequestMapping("/navigation")
-    public String navigation() {
-        String name = "wind";
-
-        Map<String, Object> mapResult = new HashMap<>();
+@RestController("menu")
+public class MenuController {
+    @RequestMapping("/menu/list")
+    public String list() {
+        Map<String, Object> reulstMap = new HashMap<String, Object>();
         List<Menu> menuList = new ArrayList<>();
         Menu menu = new Menu();
         menu.setName("用户管理");
-        menu.setUrl("/user");
+        menu.setUrl("/user/index");
         menuList.add(menu);
 
         menu = new Menu();
         menu.setName("菜单管理");
-        menu.setUrl("/menu");
+        menu.setUrl("/menu/index");
         menuList.add(menu);
 
         menu = new Menu();
         menu.setName("用户组管理");
-        menu.setUrl("/group");
+        menu.setUrl("/group/index");
         menuList.add(menu);
 
         menu = new Menu();
         menu.setName("角色管理");
-        menu.setUrl("/role");
+        menu.setUrl("/role/index");
         menuList.add(menu);
 
         menu = new Menu();
         menu.setName("权限管理");
-        menu.setUrl("/permission");
+        menu.setUrl("/permission/index");
         menuList.add(menu);
+        reulstMap.put("menus", menuList);
+        if(menuList==null) {
+            return JsonResponseUtil.fail(ErrorCode.FAIL);
+        }
+        return JsonResponseUtil.ok(reulstMap);
+    }
 
-        mapResult.put("menus", menuList);
-        mapResult.put("name", name);
-        return JsonResponseUtil.ok(mapResult);
+
+    @RequestMapping("/{id}")
+    public String getById(@PathVariable("id") long id) {
+        if(id<=0) {
+            return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
+        }
+        Menu menu = new Menu();
+//        User user = userService.findById(id);
+        if(menu==null) {
+            return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
+        }
+        return JsonResponseUtil.ok(menu);
     }
 }

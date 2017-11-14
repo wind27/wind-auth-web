@@ -17,13 +17,11 @@
     padding: 0;
 }
 
-.header div div {
-    float: left;
-    height: 100%;
-    display: inline;
+.div_header_menus ul {
+    margin-top:2px;
 }
 
-.header ul li {
+.div_header_menus ul li {
     float: left;
     list-style: none;
     padding-right: 20px;
@@ -32,7 +30,7 @@
     height: 100%;
 }
 
-.header ul li a {
+.div_header_menus ul li a {
     cursor: pointer;
     text-align: left;
     font-size: 16px;
@@ -40,7 +38,7 @@
     color: rgb(63, 63, 63);
 }
 
-.header ul li a:hover {
+.div_header_menus ul li a:hover {
     color: red;
 }
 
@@ -59,9 +57,9 @@
 /* footer end */
 
 /* container start */
-.container {
-    margin: 0 auto;
-    width: 80%;
-}
+/*.container {*/
+    /*margin: 0 auto;*/
+    /*width: 80%;*/
+/*}*/
 
 /* container end */
