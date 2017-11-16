@@ -1,32 +1,24 @@
 package com.wind.auth;
 
+import com.alibaba.dubbo.config.spring.context.annotation.DubboComponentScan;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.boot.autoconfigure.jackson.JacksonAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.*;
+import org.springframework.context.annotation.Import;
 
-@ImportResource(locations = { "classpath*:spring/applicationContext-consumer.xml"})
+//@ImportResource(locations = { "classpath*:spring/applicationContext-consumer.xml"})
+@Import({DispatcherServletAutoConfiguration.class, EmbeddedServletContainerAutoConfiguration.class,
+		ErrorMvcAutoConfiguration.class, HttpEncodingAutoConfiguration.class,
+		HttpMessageConvertersAutoConfiguration.class, JacksonAutoConfiguration.class, MultipartAutoConfiguration.class,
+		ServerPropertiesAutoConfiguration.class, WebMvcAutoConfiguration.class})
+
 @SpringBootApplication
+@DubboComponentScan(basePackages = "com.wind.auth.controller")
 public class WindAuthWebApplication /*extends SpringBootServletInitializer*/ {
 
-//	@Override
-//	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-//		return application.sources(WindAuthWebApplication.class);
-//	}
-
 	public static void main(String[] args) {
-//		try {
 			SpringApplication.run(WindAuthWebApplication.class, args);
-//			synchronized (WindAuthWebApplication.class) {
-//				while (true) {
-//					WindAuthWebApplication.class.wait();
-//				}
-//			}
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		} finally {
-//			System.out.println("******************************* stop ");
-//		}
 	}
 }

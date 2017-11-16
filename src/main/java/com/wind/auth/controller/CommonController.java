@@ -2,9 +2,11 @@ package com.wind.auth.controller;
 
 import com.wind.auth.model.Menu;
 import com.wind.auth.model.User;
+import com.wind.auth.service.IMenuService;
 import com.wind.auth.service.IUserService;
 import com.wind.common.ErrorCode;
 import com.wind.utils.JsonResponseUtil;
+import jdk.nashorn.internal.ir.annotations.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
@@ -24,8 +26,11 @@ import java.util.Map;
  **/
 @RestController
 public class CommonController {
-    @Autowired
+    @Reference
     private IUserService userService;
+
+    @Reference
+    private IMenuService menuService;
 
     @RequestMapping("/navigation")
     public String navigation() {
@@ -33,33 +38,35 @@ public class CommonController {
 
         Map<String, Object> mapResult = new HashMap<>();
         List<Menu> menuList = new ArrayList<>();
-        Menu menu = new Menu();
-        menu.setName("用户管理");
-        menu.setUrl("/user");
-        menuList.add(menu);
+        Menu menu = menuService.findMenuItemById(0);
 
-        menu = new Menu();
-        menu.setName("菜单管理");
-        menu.setUrl("/menu");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("用户组管理");
-        menu.setUrl("/group");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("角色管理");
-        menu.setUrl("/role");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("权限管理");
-        menu.setUrl("/permission");
+//        menu.setName("用户管理");
+//        menu.setUrl("/user");
+//        menuList.add(menu);
+//
+//        menu = new Menu();
+//        menu.setName("菜单管理");
+//        menu.setUrl("/menu");
+//        menuList.add(menu);
+//
+//        menu = new Menu();
+//        menu.setName("用户组管理");
+//        menu.setUrl("/group");
+//        menuList.add(menu);
+//
+//        menu = new Menu();
+//        menu.setName("角色管理");
+//        menu.setUrl("/role");
+//        menuList.add(menu);
+//
+//        menu = new Menu();
+//        menu.setName("权限管理");
+//        menu.setUrl("/permission");
         menuList.add(menu);
 
         mapResult.put("menus", menuList);
         mapResult.put("name", name);
+
         return JsonResponseUtil.ok(mapResult);
     }
 }

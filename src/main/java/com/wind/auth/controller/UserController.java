@@ -1,5 +1,6 @@
 package com.wind.auth.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.wind.auth.model.User;
 import com.wind.auth.service.IUserService;
 import com.wind.common.ErrorCode;
@@ -18,29 +19,28 @@ import java.util.Date;
  **/
 @RestController
 public class UserController {
-    //    @Reference
-    @Autowired
+    @Reference
     private IUserService userService;
 
     @RequestMapping("/user/{id}")
-    public String imageShow( @PathVariable("id") long id) {
-        if(id<=0) {
+    public String imageShow(@PathVariable("id") long id) {
+        if (id <= 0) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
         }
         User user = userService.findById(id);
-        if(user==null) {
+        if (user == null) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
         }
         return JsonResponseUtil.ok(user);
     }
 
     @RequestMapping("save")
-    public String saveUser(){
+    public String saveUser() {
         User user = new User();
         user.setCreateTime(new Date());
         user.setRealname("realname");
         user.setUsername("username");
-        if (userService.save(user)==null){
+        if (userService.save(user) == null) {
             return JsonResponseUtil.fail(ErrorCode.ERROR);
         }
         return JsonResponseUtil.ok();
