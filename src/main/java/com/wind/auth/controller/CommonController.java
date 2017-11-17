@@ -38,30 +38,31 @@ public class CommonController {
 
         Map<String, Object> mapResult = new HashMap<>();
         List<Menu> menuList = new ArrayList<>();
-        Menu menu = menuService.findMenuItemById(0);
+        // Menu menu = menuService.findById(1);
 
-//        menu.setName("用户管理");
-//        menu.setUrl("/user");
-//        menuList.add(menu);
-//
-//        menu = new Menu();
-//        menu.setName("菜单管理");
-//        menu.setUrl("/menu");
-//        menuList.add(menu);
-//
-//        menu = new Menu();
-//        menu.setName("用户组管理");
-//        menu.setUrl("/group");
-//        menuList.add(menu);
-//
-//        menu = new Menu();
-//        menu.setName("角色管理");
-//        menu.setUrl("/role");
-//        menuList.add(menu);
-//
-//        menu = new Menu();
-//        menu.setName("权限管理");
-//        menu.setUrl("/permission");
+        Menu menu = new Menu();
+        menu.setName("用户管理");
+        menu.setUrl("/user");
+        menuList.add(menu);
+
+        menu = new Menu();
+        menu.setName("菜单管理");
+        menu.setUrl("/menu");
+        menuList.add(menu);
+
+        menu = new Menu();
+        menu.setName("用户组管理");
+        menu.setUrl("/group");
+        menuList.add(menu);
+
+        menu = new Menu();
+        menu.setName("角色管理");
+        menu.setUrl("/role");
+        menuList.add(menu);
+
+        menu = new Menu();
+        menu.setName("权限管理");
+        menu.setUrl("/permission");
         menuList.add(menu);
 
         mapResult.put("menus", menuList);

@@ -3,16 +3,31 @@
  */
 
 require.config({
-    baseUrl : '/js',
+    baseUrl: '/js',
     paths: {
         jquery: 'lib/jquery1.10.2.min',
         juicer: 'lib/juicer',
-        header: 'header.js?v='+Math.random(100),
-        menu:'menu.js?v='+Math.random(100)
+        header: 'header.js?v=' + Math.random(100),
+        menu: 'menu.js?v=' + Math.random(100)
     }
 });
+var currentModule = '';
 
-require(['jquery', 'header', 'menu'], function (jquery, header, menu) {
-    header.init();
-    menu.init();
+require(['jquery', 'juicer'], function ($, tpl) {
+    currentJS = $("#current-js");
+    var targetModule = currentJS.attr("current-module");
+    var initMethod = currentJS.attr("init-method");
+    console.log('初始化 :' + targetModule + "(" + initMethod + ')');
+    if (currentJS && targetModule && initMethod) {
+        require(['header'], function (header) {
+            header.init();
+        });
+        // 页面加载完毕后再执行相关业务代码比较稳妥
+        $(function () {
+            currentModule = require([targetModule], function (targetModule) {
+                currentModule = targetModule;
+                targetModule.menu.list();
+            });
+        });
+    }
 });

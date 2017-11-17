@@ -1,17 +1,11 @@
 package com.wind.auth.controller;
 
-import com.wind.auth.model.App;
-import com.wind.auth.model.Menu;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * IndexController
@@ -20,6 +14,12 @@ import java.util.Map;
  **/
 @Controller
 public class IndexController {
+
+    public IndexController() {
+
+        System.out.println("HHHHHH");
+    }
+
     @RequestMapping("/")
     public String homepage(Model model, @RequestParam(value="name", required = false) String name) {
         if(StringUtils.isEmpty(name)) {
