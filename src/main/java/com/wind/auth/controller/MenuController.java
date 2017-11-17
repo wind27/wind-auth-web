@@ -1,7 +1,9 @@
 package com.wind.auth.controller;
 
+import com.alibaba.dubbo.config.annotation.Reference;
 import com.wind.auth.model.Menu;
 import com.wind.auth.model.User;
+import com.wind.auth.service.IMenuService;
 import com.wind.auth.service.IUserService;
 import com.wind.common.ErrorCode;
 import com.wind.utils.JsonResponseUtil;
@@ -23,55 +25,60 @@ import java.util.Map;
  **/
 @RestController("menu")
 public class MenuController {
+    @Reference(version = "2.0.0")
+    private IMenuService menuService;
+
     @RequestMapping("/menu/list")
     public String list() {
         Map<String, Object> reulstMap = new HashMap<String, Object>();
-        List<Menu> menuList = new ArrayList<>();
-        Menu menu = new Menu();
-        menu.setName("用户管理");
-        menu.setUrl("/user/index");
-        menuList.add(menu);
+        Map<String, Object> params = new HashMap<>();
 
-        menu = new Menu();
-        menu.setName("菜单管理");
-        menu.setUrl("/menu/index");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("用户组管理");
-        menu.setUrl("/group/index");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("角色管理");
-        menu.setUrl("/role/index");
-        menuList.add(menu);
-
-        menu = new Menu();
-        menu.setName("权限管理");
-        menu.setUrl("/permission/index");
-        menuList.add(menu);
-        reulstMap.put("menus", menuList);
-        if(menuList==null) {
+        List<Menu> menuList = menuService.find(params);
+        if(menuList!=null) {
+            reulstMap.put("menus", menuList);
+            return JsonResponseUtil.ok(reulstMap);
+        } else {
             return JsonResponseUtil.fail(ErrorCode.FAIL);
         }
-        return JsonResponseUtil.ok(reulstMap);
     }
-
 
     @RequestMapping("/{id}")
     public String getById(@PathVariable("id") long id) {
         if(id<=0) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
         }
-        Menu menu = new Menu();
-//        User user = userService.findById(id);
-        if(menu==null) {
+        Menu menu = menuService.findById(id);
+        if(menu!=null) {
+            return JsonResponseUtil.ok(menu);
+        } else {
+            return JsonResponseUtil.fail(ErrorCode.FAIL);
+        }
+    }
+
+    @RequestMapping("/enable/{id}")
+    public String enable(@PathVariable("id") long id) {
+        if(id<=0) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
         }
-        return JsonResponseUtil.ok(menu);
+        boolean flag = menuService.enable(id);
+        if(flag) {
+            return JsonResponseUtil.ok();
+        } else {
+            return JsonResponseUtil.fail();
+        }
+    }
+    @RequestMapping("disable/{id}")
+    public String disable(@PathVariable("id") long id) {
+        if(id<=0) {
+            return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
+        }
+        boolean flag = menuService.disable(id);
+        if(flag) {
+            return JsonResponseUtil.ok();
+        } else {
+            return JsonResponseUtil.fail();
+        }
     }
 
 
-//    public String
 }

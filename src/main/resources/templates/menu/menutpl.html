@@ -5,15 +5,29 @@
         <table border="1" cellpadding="3" cellspacing="0" style="width: 80%;margin:auto;">
             <tr>
                 <th>名称</th>
-                <th>url</th>
+                <th>URL</th>
+                <th>操作</th>
             </tr>
             {@each menus as menu,index}
             <tr>
                 <td>${menu.name}</td>
                 <td>${menu.url}</td>
+                <td><a href="#">编辑</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="currentModule.menu.enable('${id}');">启用</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="#" onclick="currentModule.menu.disable('${id}');">停用</a></td>
             </tr>
             {@/each}
         </table>
     </script>
 </div>
+
+<div th:fragment="menu_list">
+    <script id="tpl_add_menu" type="text/template">
+        <lable>名称:</lable><input type="button" value="新增" onclick="currentModule.menu.add('新增菜单')" />
+        <lable>名称:</lable><input type="button" value="新增" onclick="currentModule.menu.add('新增菜单')" />
+        <lable>名称:</lable><input type="button" value="新增" onclick="currentModule.menu.add('新增菜单')" />
+        <lable>名称:</lable><input type="button" value="新增" onclick="currentModule.menu.add('新增菜单')" />
+    </script>
+</div>
+
 </html>

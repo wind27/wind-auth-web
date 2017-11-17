@@ -10,10 +10,30 @@ define(function () {
             alert(id);
         },
         enable: function (id) {
-            alert(id);
+            var url = '/menu/enable?id='+id;
+            $.ajax({
+                url: url,
+                type: "get",
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        list();
+                    }
+                }
+            });
         },
         disable: function (id) {
-            alert(id);
+            var url = '/menu/disable?id='+id;
+            $.ajax({
+                url: url,
+                type: "get",
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        list();
+                    }
+                }
+            });
         },
 
         /**

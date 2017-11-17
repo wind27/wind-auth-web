@@ -32,8 +32,23 @@ public class IndexController {
 
     //菜单管理页面跳转 start
     @RequestMapping("/menu")
-    public String menu(Model model) {
+    public String menu() {
         return "menu/index";
+    }
+
+    @RequestMapping("/menu/add")
+    public String add() {
+        return "menu/add";
+    }
+
+    @RequestMapping("/menu/edit")
+    public String edit() {
+        return "menu/edit";
+    }
+
+    @RequestMapping("/menu/detail")
+    public String detail() {
+        return "menu/detail";
     }
     //菜单管理页面跳转 end
 

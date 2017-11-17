@@ -11,11 +11,11 @@ require.config({
         menu: 'menu.js?v=' + Math.random(100)
     }
 });
-var currentModule = '';
+var module = '';
 
 require(['jquery', 'juicer'], function ($, tpl) {
     currentJS = $("#current-js");
-    var targetModule = currentJS.attr("current-module");
+    var currentModule = currentJS.attr("current-module");
     var initMethod = currentJS.attr("init-method");
     console.log('初始化 :' + targetModule + "(" + initMethod + ')');
     if (currentJS && targetModule && initMethod) {
@@ -24,9 +24,13 @@ require(['jquery', 'juicer'], function ($, tpl) {
         });
         // 页面加载完毕后再执行相关业务代码比较稳妥
         $(function () {
-            currentModule = require([targetModule], function (targetModule) {
-                currentModule = targetModule;
-                targetModule.menu.list();
+            currentModule = require([currentModule], function (target) {
+                module = target;
+                if('menu' == currentModule && 'list' == initMethod) {
+                    module.menu.list();
+                } else if('menu' == currentModule && 'edit' == initMethod) {
+                    module.menu.edit();
+                }
             });
         });
     }
