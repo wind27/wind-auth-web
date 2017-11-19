@@ -2,21 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>菜单管理</title>
-    <link th:href="@{'/css/common/common.css?v=13'+${v}}" rel="stylesheet"/>
+    <link th:href="@{'/css/common/common.css?v=1'+${v}}" rel="stylesheet"/>
     <!--<script src="/js/lib/require.js" data-main="/js/main.js?v=31e22" id="page_menu_index"></script>-->
-    <script src="/js/lib/require.js" data-main="/js/main.js?v=3sw12sad2ss1s322112" id="current-js" current-module ="menu" init-method="list" async="true"></script>
+    <script src="/js/lib/require.js" data-main="/js/main.js?v=3s11322" id="current-js" current-module ="menu" init-method="list" async="true"></script>
 </head>
 <body>
-<div th:include="menu/menutpl :: tpl_menu_add"></div>
-<div th:include="menu/menutpl :: tpl_menu_edit"></div>
-<div th:include="menu/menutpl :: tpl_menu_detail"></div>
-<div th:include="menu/menutpl :: tpl_menu_list"></div>
+<div th:include="menu/menutpl :: menu_list"></div>
 <!-- header start -->
 <div th:class="header" th:include="common/header :: header (${menus}, ${name}) "></div>
 <!-- header end -->
 
 <!-- container start -->
-<div class="container"></div>
+<div class="container" style="width: 100%;"></div>
 <!-- container end -->
 
 <!-- footer start -->

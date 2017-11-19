@@ -1,36 +1,100 @@
 define(function () {
     var menu = {
+        /**
+         * 新增
+         * @param id
+         */
         add: function (id) {
             alert(id);
         },
-        update: function (id) {
-            alert(id);
-        },
-        remove: function (id) {
-            alert(id);
-        },
-        enable: function (id) {
-            var url = '/menu/enable?id='+id;
+
+        /**
+         * 编辑
+         * @param id
+         */
+        edit: function (id) {
+            var url = '/menu/detail/' + id;
             $.ajax({
                 url: url,
                 type: "get",
                 dataType: "json",
                 success: function (result) {
                     if (result.code == 0) {
-                        list();
+                        var tpl = document.getElementById('tpl_menu_edit').innerHTML;
+                        var html = juicer(tpl, result.data);
+                        $('.container').html(html);
                     }
                 }
             });
         },
-        disable: function (id) {
-            var url = '/menu/disable?id='+id;
+
+        /**
+         * 更新
+         * @param id
+         */
+        update: function (id) {
+            alert(id);
+        },
+
+        /**
+         * 详情
+         * @param id
+         */
+        detail: function (id) {
+            var url = '/menu/detail/' + id;
             $.ajax({
                 url: url,
                 type: "get",
                 dataType: "json",
                 success: function (result) {
                     if (result.code == 0) {
-                        list();
+                        var tpl = document.getElementById('tpl_menu_detail').innerHTML;
+                        var html = juicer(tpl, result.data);
+                        $('.container').html(html);
+                    }
+                }
+            });
+        },
+
+        /**
+         * 删除
+         * @param id
+         */
+        remove: function (id) {
+            alert(id);
+        },
+
+        /**
+         * 启用
+         * @param id
+         */
+        enable: function (id) {
+            var url = '/menu/enable/' + id;
+            $.ajax({
+                url: url,
+                type: "get",
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        menu.list();
+                    }
+                }
+            });
+        },
+
+        /**
+         * 停用
+         * @param id
+         */
+        disable: function (id) {
+            var url = '/menu/disable/' + id;
+            $.ajax({
+                url: url,
+                type: "get",
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        menu.list();
                     }
                 }
             });
@@ -47,7 +111,7 @@ define(function () {
                 dataType: "json",
                 success: function (result) {
                     if (result.code == 0) {
-                        var tpl = document.getElementById('tpl_list_menu').innerHTML;
+                        var tpl = document.getElementById('tpl_menu_list').innerHTML;
                         var html = juicer(tpl, result.data);
                         $('.container').html(html);
                     }
@@ -56,6 +120,6 @@ define(function () {
         }
     }
     return {
-        menu : menu
+        menu: menu
     };
 });

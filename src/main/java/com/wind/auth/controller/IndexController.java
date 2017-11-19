@@ -1,11 +1,11 @@
 package com.wind.auth.controller;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 /**
  * IndexController
@@ -21,8 +21,8 @@ public class IndexController {
     }
 
     @RequestMapping("/")
-    public String homepage(Model model, @RequestParam(value="name", required = false) String name) {
-        if(StringUtils.isEmpty(name)) {
+    public String homepage(Model model, @RequestParam(value = "name", required = false) String name) {
+        if (StringUtils.isEmpty(name)) {
             name = "wind";
         }
         model.addAttribute("name", name);
@@ -30,7 +30,7 @@ public class IndexController {
         return "index";
     }
 
-    //菜单管理页面跳转 start
+    // 菜单管理页面跳转 start
     @RequestMapping("/menu")
     public String menu() {
         return "menu/index";
@@ -50,36 +50,35 @@ public class IndexController {
     public String detail() {
         return "menu/detail";
     }
-    //菜单管理页面跳转 end
+    // 菜单管理页面跳转 end
 
-    //应用管理页面跳转 start
+    // 应用管理页面跳转 start
     @RequestMapping("/app")
     public String app(Model model) {
         return "app/index";
     }
-    //应用管理页面跳转 end
+    // 应用管理页面跳转 end
 
-    //用户组管理页面跳转 start
+    // 用户组管理页面跳转 start
     @RequestMapping("/group")
     public String group(Model model) {
         return "group/index";
     }
-    //用户组管理页面跳转 end
+    // 用户组管理页面跳转 end
 
-    //角色页面跳转 start
+    // 角色页面跳转 start
     @RequestMapping("/role")
     public String role(Model model) {
         return "role/index";
     }
-    //角色页面跳转 end
+    // 角色页面跳转 end
 
-    //权限管理页面跳转 start
+    // 权限管理页面跳转 start
     @RequestMapping("/permission")
     public String permission(Model model) {
         return "permission/index";
     }
-    //权限管理页面跳转 end
-
+    // 权限管理页面跳转 end
 
     @RequestMapping("/imageShow")
     public String imageShow(Model model) {

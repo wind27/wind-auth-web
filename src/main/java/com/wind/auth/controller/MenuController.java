@@ -7,6 +7,8 @@ import com.wind.auth.service.IMenuService;
 import com.wind.auth.service.IUserService;
 import com.wind.common.ErrorCode;
 import com.wind.utils.JsonResponseUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,8 +25,9 @@ import java.util.Map;
  *
  * @author qianchun 17/11/1
  **/
-@RestController("menu")
+@RestController
 public class MenuController {
+    private static Logger logger = LoggerFactory.getLogger(MenuController.class);
     @Reference(version = "2.0.0")
     private IMenuService menuService;
 
@@ -42,20 +45,12 @@ public class MenuController {
         }
     }
 
-    @RequestMapping("/{id}")
-    public String getById(@PathVariable("id") long id) {
-        if(id<=0) {
-            return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
-        }
-        Menu menu = menuService.findById(id);
-        if(menu!=null) {
-            return JsonResponseUtil.ok(menu);
-        } else {
-            return JsonResponseUtil.fail(ErrorCode.FAIL);
-        }
-    }
-
-    @RequestMapping("/enable/{id}")
+    /**
+     * 启用
+     * @param id 菜单ID
+     * @return 返回操作结果
+     */
+    @RequestMapping("/menu/enable/{id}")
     public String enable(@PathVariable("id") long id) {
         if(id<=0) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
@@ -67,7 +62,13 @@ public class MenuController {
             return JsonResponseUtil.fail();
         }
     }
-    @RequestMapping("disable/{id}")
+
+    /**
+     * 禁用
+     * @param id 菜单ID
+     * @return 返回操作结果
+     */
+    @RequestMapping("menu/disable/{id}")
     public String disable(@PathVariable("id") long id) {
         if(id<=0) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
@@ -80,5 +81,41 @@ public class MenuController {
         }
     }
 
+    /**
+     * 编辑
+     * @param id 菜单ID
+     * @return 操作结果
+     */
+    @RequestMapping("menu/edit/{id}")
+    public String edit(@PathVariable("id") long id) {
+        try {
+            Menu menu = menuService.findById(id);
+            if(menu!=null) {
+                return JsonResponseUtil.ok(menu);
+            } else {
+                return JsonResponseUtil.fail(ErrorCode.NOT_EXIST);
+            }
+        } catch (Exception e) {
+            logger.error("[菜单管理] 编辑菜单, 异常 e={}", e);
+            return JsonResponseUtil.fail(ErrorCode.SYS_ERROR);
+        }
+    }
 
+    /**
+     * 菜单详情
+     * @param id 主键ID
+     * @return 返回结果
+     */
+    @RequestMapping("/menu/detail/{id}")
+    public String getById(@PathVariable("id") long id) {
+        if(id<=0) {
+            return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
+        }
+        Menu menu = menuService.findById(id);
+        if(menu!=null) {
+            return JsonResponseUtil.ok(menu);
+        } else {
+            return JsonResponseUtil.fail(ErrorCode.FAIL);
+        }
+    }
 }
