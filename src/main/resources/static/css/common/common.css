@@ -1,3 +1,7 @@
+.error {
+    color: red;
+}
+
 /* header start */
 .header {
     text-align: right;
@@ -63,36 +67,41 @@
     margin: 0 auto;
     font-size: 12px;
 }
+
 .container table {
-    margin:auto;width: 100%;
+    margin: auto;
+    width: 100%;
 }
 
-.form_save_button{
+.form_save_button {
 }
 
-.form_reset_button{
+.form_reset_button {
     margin-left: 120px;
 }
 
-
 .container_header_info {
-    margin:auto;width: 100%;
+    margin: auto;
+    width: 100%;
     text-align: left;
     background-color: rgb(245, 245, 245);
     border-color: rgb(221, 221, 221);
     font-size: 18px;
 
 }
+
 .container_detail_info {
     margin-left: 20px;
 }
 
-.container_detail_info span{
+.container_detail_info span {
     margin-left: 120px;
 }
+
 .container_header_info span {
     float: right;
 }
+
 /*.container {*/
 /*margin: 0 auto;*/
 /*width: 80%;*/
