@@ -17,7 +17,7 @@ public class IndexController {
 
     public IndexController() {
 
-        System.out.println("HHHHHH");
+//        System.out.println("HHHHHH");
     }
 
     @RequestMapping("/")
