@@ -35,7 +35,7 @@
 
 <div th:fragment="tpl_menu_add">
     <script id="tpl_menu_add" type="text/template">
-        <div class="container_info">菜单新增</div>
+        <div class="container_header_info">菜单新增<span onclick="module.menu.list()">返回</span></div>
         <form>
             <p>
                 <lable>菜单名称:</lable>
@@ -70,14 +70,13 @@
             </p>
             <p>
                 <input type="button" class="form_save_button" onclick="module.menu.save()" th:value="保存" />
-                <input type="button" class="form_reset_button" onclick="module.menu.edit(${id})" th:value="重置" />
+                <input type="button" class="form_reset_button" onclick="module.menu.reset()" th:value="重置" />
             </p>
         </form>
     </script>
 </div>
 <div th:fragment="tpl_menu_edit">
     <script id="tpl_menu_edit" type="text/template">
-        <div class="container_info">菜单编辑</div>
         <div class="container_header_info">菜单编辑<span onclick="module.menu.list()">返回</span></div>
         <hr/>
         <form>

@@ -176,8 +176,13 @@ define(function () {
             });
         },
 
+        /**
+         * 新增表单重置
+         */
         reset: function () {
-            alert();
+            $(':input[name=name]').val('');
+            $(':input[name=url]').val('');
+            $("select[name='status']").val(1)
         }
     }
     return {
