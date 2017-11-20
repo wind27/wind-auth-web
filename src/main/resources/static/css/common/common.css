@@ -67,11 +67,10 @@
     margin:auto;width: 100%;
 }
 
-.container form input{
-    margin-left: 120px;
+.form_save_button{
 }
 
-.container form select{
+.form_reset_button{
     margin-left: 120px;
 }
 

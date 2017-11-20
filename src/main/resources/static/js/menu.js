@@ -14,9 +14,9 @@ define(function () {
          * @param id
          */
         edit: function (id) {
-            var url = '/menu/edit/' + id;
+            var request_url = '/menu/edit/' + id;
             $.ajax({
-                url: url,
+                url: request_url,
                 type: "get",
                 dataType: "json",
                 success: function (result) {
@@ -30,14 +30,28 @@ define(function () {
         },
 
         save: function () {
-            var url = '/menu/add/';
+            var request_url = '/menu/save/';
+            var name = $(':input[name=name]').val();
+            var url = $(':input[name=url]').val()//唯一性校验
+            var appId = $("select[name='appId']").val();
+            var status = $("select[name='status']").val();
+            // var parentId = $("select[name='parentId']").val()
+
+            var data = {
+                'name': name,
+                'url': url,
+                'appId': appId,
+                'status': status
+            }
             $.ajax({
-                url: url,
+                url: request_url,
                 type: "post",
                 dataType: "json",
+                data: data,
                 success: function (result) {
                     if (result.code == 0) {
                         alert("操作成功!!!");
+                        menu.list();
                     } else {
                         alert("操作失败");
                     }
@@ -49,31 +63,29 @@ define(function () {
          * @param id
          */
         update: function (id) {
+            var request_url = '/menu/update/';
+            var id = $(':input[name=id]').val();
             var name = $(':input[name=name]').val();
-            var url = $(':input[name=url]')//唯一性校验
-            var appId = $('').val();
-            var parentId = $(':input[name=parentId]').val();
-            var status = $('').val();
-
+            var url = $(':input[name=url]').val()//唯一性校验
+            var appId = $("select[name='appId']").val();
+            var status = $("select[name='status']").val();
+            // var parentId = $("select[name='parentId']").val()
             var data = {
-                'name' : name,
-                'url' : url,
+                'id': id,
+                'name': name,
+                'url': url,
                 'appId': appId,
-                'parentId' : parentId,
-                'status' : status
+                'status': status
             }
-
-            var url = '/menu/update/';
             $.ajax({
-                url: url,
+                url: request_url,
                 type: "post",
                 dataType: "json",
-                data:{
-
-                },
+                data: data,
                 success: function (result) {
                     if (result.code == 0) {
                         alert("操作成功!!!");
+                        menu.list();
                     } else {
                         alert("操作失败");
                     }
@@ -86,9 +98,9 @@ define(function () {
          * @param id
          */
         detail: function (id) {
-            var url = '/menu/detail/' + id;
+            var request_url = '/menu/detail/' + id;
             $.ajax({
-                url: url,
+                url: request_url,
                 type: "get",
                 dataType: "json",
                 success: function (result) {
@@ -114,9 +126,9 @@ define(function () {
          * @param id
          */
         enable: function (id) {
-            var url = '/menu/enable/' + id;
+            var request_url = '/menu/enable/' + id;
             $.ajax({
-                url: url,
+                url: request_url,
                 type: "get",
                 dataType: "json",
                 success: function (result) {
@@ -132,9 +144,9 @@ define(function () {
          * @param id
          */
         disable: function (id) {
-            var url = '/menu/disable/' + id;
+            var request_url = '/menu/disable/' + id;
             $.ajax({
-                url: url,
+                url: request_url,
                 type: "get",
                 dataType: "json",
                 success: function (result) {
@@ -149,9 +161,9 @@ define(function () {
          * 获取菜单
          */
         list: function () {
-            var url = '/menu/list';
+            var request_url = '/menu/list';
             $.ajax({
-                url: url,
+                url: request_url,
                 type: "get",
                 dataType: "json",
                 success: function (result) {
@@ -162,6 +174,15 @@ define(function () {
                     }
                 }
             });
+        },
+
+        /**
+         * 新增表单重置
+         */
+        reset: function () {
+            $(':input[name=name]').val('');
+            $(':input[name=url]').val('');
+            $("select[name='status']").val(1)
         }
     }
     return {

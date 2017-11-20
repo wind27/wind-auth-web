@@ -4,8 +4,7 @@
         <div class="container_info">菜单列表</div>
         <hr style="color: #987cb9;"/>
         <form>
-            <!--<input type="button" value="新增" onclick="module.menu.add('新增菜单')"/>-->
-            <button onclick="module.menu.add('新增菜单')">新增</button>
+            <input type="button" class="form_add_button" onclick="module.menu.add()" th:value="新增" />
         </form>
 
         <table border="1" cellpadding="3" cellspacing="0" style="">
@@ -36,7 +35,7 @@
 
 <div th:fragment="tpl_menu_add">
     <script id="tpl_menu_add" type="text/template">
-        <div class="container_info">菜单新增</div>
+        <div class="container_header_info">菜单新增<span onclick="module.menu.list()">返回</span></div>
         <form>
             <p>
                 <lable>菜单名称:</lable>
@@ -52,7 +51,7 @@
                 <lable>菜单URL:</lable>
                 <input type="input" name="url"/>
             </p>
-            <p>
+            <!--<p>
                 <lable>父级菜单:</lable>
                 <select name="parentId">
                     <option value="1">用户管理</option>
@@ -61,7 +60,7 @@
                     <option value="4">角色管理</option>
                     <option value="5">权限管理</option>
                 </select>
-            </p>
+            </p>-->
             <p>
                 <lable>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</lable>
                 <select name="status">
@@ -70,15 +69,14 @@
                 </select>
             </p>
             <p>
-                <button class="form_save" onclick="module.menu.update()">保存</button>
-                <button class="form_reset" onclick="module.menu.edit()">重置</button>
+                <input type="button" class="form_save_button" onclick="module.menu.save()" th:value="保存" />
+                <input type="button" class="form_reset_button" onclick="module.menu.reset()" th:value="重置" />
             </p>
         </form>
     </script>
 </div>
 <div th:fragment="tpl_menu_edit">
     <script id="tpl_menu_edit" type="text/template">
-        <div class="container_info">菜单编辑</div>
         <div class="container_header_info">菜单编辑<span onclick="module.menu.list()">返回</span></div>
         <hr/>
         <form>
@@ -97,7 +95,7 @@
                 <lable>菜单URL:</lable>
                 <input type="input" name="url" value="${url}"/>
             </p>
-            <p>
+            <!--<p>
                 <lable>父级菜单:</lable>
                 <select name="parentId">
                     <option value="1">用户管理</option>
@@ -106,7 +104,7 @@
                     <option value="4">角色管理</option>
                     <option value="5">权限管理</option>
                 </select>
-            </p>
+            </p>-->
             <p>
                 <lable>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:</lable>
                 <select name="status">
@@ -115,8 +113,8 @@
                 </select>
             </p>
             <p>
-                <button class="form_save" onclick="module.menu.update()">保存</button>
-                <button class="form_reset" onclick="module.menu.edit(${id})">重置</button>
+                <input type="button" class="form_save_button" onclick="module.menu.update()" th:value="保存" />
+                <input type="button" class="form_reset_button" onclick="module.menu.edit(${id})" th:value="重置" />
             </p>
         </form>
     </script>
@@ -138,10 +136,10 @@
                 <lable>菜单URL:</lable>
                 <span>${url}</span>
             </p>
-            <p>
+            <!--<p>
                 <lable>父级菜单:</lable>
                 <span>${parentId}</span>
-            </p>
+            </p>-->
             <p></p>
         </div>
     </script>
