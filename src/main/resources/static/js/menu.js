@@ -1,5 +1,24 @@
-define(function () {
+define(['jquery_validate'], function () {
     var menu = {
+        /**
+         * 表单校验
+         * @returns {*|PlatformMismatchEvent|jQuery}
+         */
+        valid:function(formId) {
+            var ruleJson = {};
+            var ruleMsg = {};
+
+            ruleJson['url'] = {required: true};
+            ruleJson['name'] = {required: true};
+
+            ruleMsg['name'] = {required: '菜单名称不能为空'};
+            ruleMsg['url'] = {required: '菜单URL不能为空'};
+            $('#'+formId).validate({
+                rules: ruleJson,
+                messages: ruleMsg
+            });
+        },
+
         /**
          * 新增
          * @param id
@@ -7,6 +26,7 @@ define(function () {
         add: function (id) {
             var tpl = document.getElementById('tpl_menu_add').innerHTML;
             $('.container').html(tpl);
+            menu.valid('form_menu_add');
         },
 
         /**
@@ -24,12 +44,16 @@ define(function () {
                         var tpl = document.getElementById('tpl_menu_edit').innerHTML;
                         var html = juicer(tpl, result.data);
                         $('.container').html(html);
+                        menu.valid('form_menu_edit');
                     }
                 }
             });
         },
 
         save: function () {
+            if (!$("#form_menu_add").valid()) {
+                return;
+            }
             var request_url = '/menu/save/';
             var name = $(':input[name=name]').val();
             var url = $(':input[name=url]').val()//唯一性校验
@@ -63,6 +87,9 @@ define(function () {
          * @param id
          */
         update: function (id) {
+            if (!$("#form_menu_edit").valid()) {
+                return;
+            }
             var request_url = '/menu/update/';
             var id = $(':input[name=id]').val();
             var name = $(':input[name=name]').val();

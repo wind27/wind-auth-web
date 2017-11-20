@@ -6,6 +6,7 @@ require.config({
     baseUrl: '/js',
     paths: {
         jquery: 'lib/jquery1.10.2.min',
+        jquery_validate:'lib/jquery.validate.min',
         juicer: 'lib/juicer',
         header: 'header.js?v=' + Math.random(100),
         menu: 'menu.js?v=' + Math.random(100)
@@ -13,7 +14,7 @@ require.config({
 });
 var module = '';
 
-require(['jquery', 'juicer'], function ($, tpl) {
+require(['jquery', 'jquery_validate', 'juicer'], function ($, jquery_validate, tpl) {
     currentJS = $("#current-js");
     var currentModule = currentJS.attr("current-module");
     var initMethod = currentJS.attr("init-method");

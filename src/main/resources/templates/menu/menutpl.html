@@ -36,7 +36,7 @@
 <div th:fragment="tpl_menu_add">
     <script id="tpl_menu_add" type="text/template">
         <div class="container_header_info">菜单新增<span onclick="module.menu.list()">返回</span></div>
-        <form>
+        <form id="form_menu_add">
             <p>
                 <lable>菜单名称:</lable>
                 <input type="input" name="name"/>
@@ -79,11 +79,17 @@
     <script id="tpl_menu_edit" type="text/template">
         <div class="container_header_info">菜单编辑<span onclick="module.menu.list()">返回</span></div>
         <hr/>
-        <form>
+        <form id="form_menu_edit" action="" method="post">
             <input type="hidden" name="id" value="${id}"/>
             <p>
                 <lable>菜单名称:</lable>
-                <input type="input" name="name" value="${name}"/>
+                <input type="input" id="name" name="name" value="${name}"/>
+            </p>
+            <p>
+                <lable>所属应用:</lable>
+                <select name="appId">
+                    <option value="0">权限系统</option>
+                </select>
             </p>
             <p>
                 <lable>所属应用:</lable>
@@ -93,7 +99,7 @@
             </p>
             <p>
                 <lable>菜单URL:</lable>
-                <input type="input" name="url" value="${url}"/>
+                <input type="input" id="url" name="url" value="${url}"/>
             </p>
             <!--<p>
                 <lable>父级菜单:</lable>
