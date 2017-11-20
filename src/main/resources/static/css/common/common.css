@@ -66,6 +66,16 @@
 .container table {
     margin:auto;width: 100%;
 }
+
+.container form input{
+    margin-left: 120px;
+}
+
+.container form select{
+    margin-left: 120px;
+}
+
+
 .container_header_info {
     margin:auto;width: 100%;
     text-align: left;

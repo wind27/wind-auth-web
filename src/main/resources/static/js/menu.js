@@ -5,7 +5,8 @@ define(function () {
          * @param id
          */
         add: function (id) {
-            alert(id);
+            var tpl = document.getElementById('tpl_menu_add').innerHTML;
+            $('.container').html(tpl);
         },
 
         /**
@@ -13,7 +14,7 @@ define(function () {
          * @param id
          */
         edit: function (id) {
-            var url = '/menu/detail/' + id;
+            var url = '/menu/edit/' + id;
             $.ajax({
                 url: url,
                 type: "get",
@@ -28,12 +29,56 @@ define(function () {
             });
         },
 
+        save: function () {
+            var url = '/menu/add/';
+            $.ajax({
+                url: url,
+                type: "post",
+                dataType: "json",
+                success: function (result) {
+                    if (result.code == 0) {
+                        alert("操作成功!!!");
+                    } else {
+                        alert("操作失败");
+                    }
+                }
+            });
+        },
         /**
          * 更新
          * @param id
          */
         update: function (id) {
-            alert(id);
+            var name = $(':input[name=name]').val();
+            var url = $(':input[name=url]')//唯一性校验
+            var appId = $('').val();
+            var parentId = $(':input[name=parentId]').val();
+            var status = $('').val();
+
+            var data = {
+                'name' : name,
+                'url' : url,
+                'appId': appId,
+                'parentId' : parentId,
+                'status' : status
+            }
+
+            var url = '/menu/update/';
+            $.ajax({
+                url: url,
+                type: "post",
+                dataType: "json",
+                data:{
+
+                },
+                success: function (result) {
+                    if (result.code == 0) {
+                        alert("操作成功!!!");
+                    } else {
+                        alert("操作失败");
+                    }
+                }
+            });
         },
 
         /**

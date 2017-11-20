@@ -11,14 +11,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * UserController
@@ -98,6 +97,52 @@ public class MenuController {
         } catch (Exception e) {
             logger.error("[菜单管理] 编辑菜单, 异常 e={}", e);
             return JsonResponseUtil.fail(ErrorCode.SYS_ERROR);
+        }
+    }
+
+
+    /**
+     * 新增
+     * @param menu 新增参数
+     * @return 返回操作结果
+     */
+    public String add(@RequestParam("menu") Menu menu) {
+        if(menu==null || StringUtils.isEmpty(menu.getName()) || StringUtils.isEmpty(menu.getUrl())) {
+            return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
+        }
+        boolean flag = menuService.add(menu);
+        if(flag) {
+            return JsonResponseUtil.ok();
+        } else {
+            return JsonResponseUtil.fail();
+        }
+    }
+    /**
+     * 更新
+     * @param menu 更新参数对象
+     * @return 返回操作结果
+     */
+    public String update(@RequestParam("menu") Menu menu) {
+        if(menu==null) {
+            return  JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
+        }
+
+        Menu currentMuen = menuService.findById(menu.getId());
+        if(currentMuen==null) {
+            return JsonResponseUtil.fail(ErrorCode.NOT_EXIST);
+        }
+        currentMuen.setUrl(menu.getUrl());
+        currentMuen.setName(menu.getName());
+        currentMuen.setStatus(menu.getStatus());
+        currentMuen.setUpdateTime(new Date());
+        currentMuen.setAppId(menu.getAppId());
+        currentMuen.setParentId(menu.getParentId());
+
+        boolean flag = menuService.update(menu);
+        if(flag) {
+            return JsonResponseUtil.ok();
+        } else {
+            return JsonResponseUtil.fail();
         }
     }
 
