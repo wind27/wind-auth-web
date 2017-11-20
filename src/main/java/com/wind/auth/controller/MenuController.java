@@ -12,10 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -30,7 +27,7 @@ public class MenuController {
     @Reference(version = "2.0.0")
     private IMenuService menuService;
 
-    @RequestMapping("/menu/list")
+    @RequestMapping(value = "/menu/list")
     public String list() {
         Map<String, Object> reulstMap = new HashMap<String, Object>();
         Map<String, Object> params = new HashMap<>();
@@ -49,7 +46,7 @@ public class MenuController {
      * @param id 菜单ID
      * @return 返回操作结果
      */
-    @RequestMapping("/menu/enable/{id}")
+    @RequestMapping(value = "/menu/enable/{id}")
     public String enable(@PathVariable("id") long id) {
         if(id<=0) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
@@ -67,7 +64,7 @@ public class MenuController {
      * @param id 菜单ID
      * @return 返回操作结果
      */
-    @RequestMapping("menu/disable/{id}")
+    @RequestMapping(value = "menu/disable/{id}")
     public String disable(@PathVariable("id") long id) {
         if(id<=0) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
@@ -85,7 +82,7 @@ public class MenuController {
      * @param id 菜单ID
      * @return 操作结果
      */
-    @RequestMapping("menu/edit/{id}")
+    @RequestMapping(value = "menu/edit/{id}")
     public String edit(@PathVariable("id") long id) {
         try {
             Menu menu = menuService.findById(id);
@@ -106,7 +103,8 @@ public class MenuController {
      * @param menu 新增参数
      * @return 返回操作结果
      */
-    public String add(@RequestParam("menu") Menu menu) {
+    @RequestMapping(value="menu/save", method = RequestMethod.POST)
+    public String save(Menu menu) {
         if(menu==null || StringUtils.isEmpty(menu.getName()) || StringUtils.isEmpty(menu.getUrl())) {
             return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
         }
@@ -122,7 +120,8 @@ public class MenuController {
      * @param menu 更新参数对象
      * @return 返回操作结果
      */
-    public String update(@RequestParam("menu") Menu menu) {
+    @RequestMapping(value="menu/update", method = RequestMethod.POST)
+    public String update(Menu menu) {
         if(menu==null) {
             return  JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
         }
@@ -136,7 +135,7 @@ public class MenuController {
         currentMuen.setStatus(menu.getStatus());
         currentMuen.setUpdateTime(new Date());
         currentMuen.setAppId(menu.getAppId());
-        currentMuen.setParentId(menu.getParentId());
+        currentMuen.setParentId(0);
 
         boolean flag = menuService.update(menu);
         if(flag) {
