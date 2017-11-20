@@ -1,5 +1,6 @@
 package com.wind.auth.controller;
 
+import com.wind.annotation.AuthPermission;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -83,6 +84,13 @@ public class IndexController {
     @RequestMapping("/imageShow")
     public String imageShow(Model model) {
         return "imageShow";
+    }
+
+
+    @AuthPermission(value = "auth.nopermission")
+    @RequestMapping("/nopermission")
+    public String nopermission(Model model) {
+        return "nopermission";
     }
 
 }
