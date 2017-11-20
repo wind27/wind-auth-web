@@ -11,6 +11,8 @@ define(['juicer'], function () {
                     var html = juicer(tpl, result.data);
                     $('.div_header_menus ul').html(html);
                     $('.div_header_user').html('<label style="line-height: 70px;">欢迎' + result.data.name + '</label>');
+                    $('.footer').html('<p>Copyright 2017 ' + result.data.name + '</p>');
+
                 }
             }
         });

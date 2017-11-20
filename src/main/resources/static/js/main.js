@@ -26,15 +26,20 @@ require(['jquery', 'juicer'], function ($, tpl) {
     if (currentJS && currentModule && initMethod) {
         // 页面加载完毕后再执行相关业务代码比较稳妥
         $(function () {
-            require([currentModule], function (currentModule2) {
-                module = currentModule2;
-                //menu
-                if ('menu' == currentModule && 'list' == initMethod) {
-                    module.menu.list();
-                } else if ('menu' == currentModule && 'edit' == initMethod) {
-                    module.menu.edit();
-                }
-            });
-        });
+                require([currentModule], function (target) {
+                        module = target;
+                        if ('menu' == currentModule && 'list' == initMethod) {
+                            module.menu.list();
+                        } else if ('menu' == currentModule && 'add' == initMethod) {
+                            module.menu.add(id);
+                        } else if ('menu' == currentModule && 'edit' == initMethod) {
+                            module.menu.edit(id);
+                        } else if ('menu' == currentModule && 'detail' == initMethod) {
+                            module.menu.detail(id);
+                        }
+                    }
+                );
+            }
+        )
     }
 });
