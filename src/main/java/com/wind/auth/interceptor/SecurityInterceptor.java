@@ -20,6 +20,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o)
             throws Exception {
         httpServletRequest.setAttribute("startTime",System.currentTimeMillis());
+        httpServletRequest.setAttribute("v", System.currentTimeMillis());
 
         //权限校验
         if(httpServletRequest.getRequestURI().equals("/imageShow") || httpServletRequest.getRequestURI().equals("/test")) {

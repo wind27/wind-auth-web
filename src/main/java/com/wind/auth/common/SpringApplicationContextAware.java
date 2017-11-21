@@ -32,9 +32,11 @@ public class SpringApplicationContextAware implements ApplicationContextAware {
         if (this.applicationContext == null) {
             this.applicationContext = applicationContext;
 
-            //初始化权限映射缓存
+            // 初始化权限映射缓存
             this.initAuthPermissionUrlMap();
+            System.out.println("********************************************************");
             System.out.println(JSONObject.toJSON(CacheMap.authPermissionUrlMap));
+            System.out.println("********************************************************");
         }
     }
 
@@ -59,12 +61,20 @@ public class SpringApplicationContextAware implements ApplicationContextAware {
                 continue;
             }
 
-            String parentUrl = "";
-            if(clazz.getClass().isAnnotationPresent(Controller.class)) {
+            String parentUrl = "/";
+            if (clazz.getClass().isAnnotationPresent(Controller.class)) {
                 parentUrl = clazz.getClass().getAnnotation(Controller.class).value();
             }
 
-            if(clazz.getClass().getMethods()==null || clazz.getClass().getMethods().length==0) {
+            if (!parentUrl.startsWith("/")) {
+                parentUrl = "/" + parentUrl;
+            }
+            if (parentUrl.length()>1 && parentUrl.endsWith("/")) {
+                parentUrl = parentUrl.substring(0, parentUrl.length() - 1);
+            }
+
+            System.out.println("*** " + parentUrl + " ***");
+            if (clazz.getClass().getMethods() == null || clazz.getClass().getMethods().length == 0) {
                 continue;
             }
             for (Method method : clazz.getClass().getMethods()) {
@@ -74,14 +84,18 @@ public class SpringApplicationContextAware implements ApplicationContextAware {
 
                 String permissionValue = method.getAnnotation(AuthPermission.class).value();
                 String[] urls = method.getAnnotation(RequestMapping.class).value();
-                if(urls==null || urls.length==0) {
+                if (urls == null || urls.length == 0) {
                     continue;
                 }
-                for(String url : urls) {
-                    if(!StringUtils.isEmpty(parentUrl) && !parentUrl.equals("/")) {
-                        url = parentUrl + url;
+                for (String url : urls) {
+                    if (url.startsWith("/")) {
+                        url = url.substring(1, url.length());
                     }
-                    if(!CacheMap.authPermissionUrlMap.containsKey(url)) {
+                    if (url.endsWith("/")) {
+                        url = url.substring(0, url.length() - 1);
+                    }
+                    url = parentUrl + url;
+                    if (!CacheMap.authPermissionUrlMap.containsKey(url)) {
                         CacheMap.authPermissionUrlMap.put(url, permissionValue);
                     }
                 }

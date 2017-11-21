@@ -1,6 +1,7 @@
 package com.wind.auth.controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
+import com.wind.annotation.AuthPermission;
 import com.wind.auth.model.Menu;
 import com.wind.auth.model.User;
 import com.wind.auth.service.IMenuService;
@@ -27,6 +28,7 @@ public class MenuController {
     @Reference(version = "2.0.0")
     private IMenuService menuService;
 
+    @AuthPermission(value = "auth.menu.list")
     @RequestMapping(value = "/menu/list")
     public String list() {
         Map<String, Object> reulstMap = new HashMap<String, Object>();
@@ -46,6 +48,7 @@ public class MenuController {
      * @param id 菜单ID
      * @return 返回操作结果
      */
+    @AuthPermission(value = "auth.menu.enable")
     @RequestMapping(value = "/menu/enable/{id}")
     public String enable(@PathVariable("id") long id) {
         if(id<=0) {
@@ -64,6 +67,7 @@ public class MenuController {
      * @param id 菜单ID
      * @return 返回操作结果
      */
+    @AuthPermission(value = "auth.menu.disable")
     @RequestMapping(value = "menu/disable/{id}")
     public String disable(@PathVariable("id") long id) {
         if(id<=0) {
@@ -82,6 +86,7 @@ public class MenuController {
      * @param id 菜单ID
      * @return 操作结果
      */
+    @AuthPermission(value = "auth.menu.edit")
     @RequestMapping(value = "menu/edit/{id}")
     public String edit(@PathVariable("id") long id) {
         try {
@@ -103,6 +108,7 @@ public class MenuController {
      * @param menu 新增参数
      * @return 返回操作结果
      */
+    @AuthPermission(value = "auth.menu.save")
     @RequestMapping(value="menu/save", method = RequestMethod.POST)
     public String save(Menu menu) {
         if(menu==null || StringUtils.isEmpty(menu.getName()) || StringUtils.isEmpty(menu.getUrl())) {
@@ -120,6 +126,7 @@ public class MenuController {
      * @param menu 更新参数对象
      * @return 返回操作结果
      */
+    @AuthPermission(value = "auth.menu.update")
     @RequestMapping(value="menu/update", method = RequestMethod.POST)
     public String update(Menu menu) {
         if(menu==null) {
@@ -150,6 +157,7 @@ public class MenuController {
      * @param id 主键ID
      * @return 返回结果
      */
+    @AuthPermission(value = "auth.menu.detail")
     @RequestMapping("/menu/detail/{id}")
     public String getById(@PathVariable("id") long id) {
         if(id<=0) {

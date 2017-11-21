@@ -20,9 +20,11 @@ require(['jquery', 'jquery_validate', 'juicer'], function ($, jquery_validate, t
     var initMethod = currentJS.attr("init-method");
     console.log('初始化 :' + currentModule + "(" + initMethod + ')');
     //header
-    require(['header'], function (header) {
-        header.nav();
-    });
+    if(currentModule != 'login'){
+        require(['header'], function (header) {
+            header.nav();
+        });
+    }
 
     if (currentJS && currentModule && initMethod) {
         // 页面加载完毕后再执行相关业务代码比较稳妥
