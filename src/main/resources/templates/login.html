@@ -3,7 +3,7 @@
 <head>
     <title>首页</title>
     <link th:href="@{'/css/common/common.css?v='+${v}}" rel="stylesheet"/>
-    <script src="/js/lib/require.js" data-main="/js/main.js?v=3" id="current-js" current-module ="login" init-method="login" async="true"></script>
+    <script src="/js/lib/require.js" data-main="/js/main.js?v=113" id="current-js" current-module ="login" init-method="valid" async="true"></script>
 </head>
 <body>
 
@@ -11,7 +11,7 @@
     <form id="form_login">
         <p><label>用户名:</label><input type="text" name="username"/></p>
         <p><label>密&nbsp;&nbsp;&nbsp;码:</label><input type="password" name="password"/></p>
-        <p><input type="button" value="提交"/> <input type="button" value="重置" /> </p>
+        <p><input type="button" onclick="module.login.login()" value="提交"/> <input type="button" onclick="module.login.reset()" value="重置" /> </p>
     </form>
 </div>
 <div th:class="footer" th:include="common/footer :: copyright ('') "></div>

@@ -40,7 +40,7 @@ public class UserController {
         user.setCreateTime(new Date());
         user.setRealname("realname");
         user.setUsername("username");
-        if (userService.save(user) == null) {
+        if (userService.save(user)) {
             return JsonResponseUtil.fail(ErrorCode.ERROR);
         }
         return JsonResponseUtil.ok();

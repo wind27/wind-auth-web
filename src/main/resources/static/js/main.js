@@ -6,13 +6,14 @@ require.config({
     baseUrl: '/js',
     paths: {
         jquery: 'lib/jquery1.10.2.min',
-        jquery_validate:'lib/jquery.validate.min',
+        jquery_validate: 'lib/jquery.validate.min',
         juicer: 'lib/juicer',
         header: 'header.js?v=' + Math.random(100),
         menu: 'menu.js?v=' + Math.random(100)
     }
 });
 var module = '';
+var headerModule = '';
 
 require(['jquery', 'jquery_validate', 'juicer'], function ($, jquery_validate, tpl) {
     currentJS = $("#current-js");
@@ -20,9 +21,10 @@ require(['jquery', 'jquery_validate', 'juicer'], function ($, jquery_validate, t
     var initMethod = currentJS.attr("init-method");
     console.log('初始化 :' + currentModule + "(" + initMethod + ')');
     //header
-    if(currentModule != 'login'){
+    if (currentModule != 'login') {
         require(['header'], function (header) {
-            header.nav();
+            headerModule = header;
+            header.nav.getNav();
         });
     }
 
@@ -31,7 +33,9 @@ require(['jquery', 'jquery_validate', 'juicer'], function ($, jquery_validate, t
         $(function () {
                 require([currentModule], function (target) {
                         module = target;
-                        if ('menu' == currentModule && 'list' == initMethod) {
+                        if ('login' == currentModule && 'valid' == initMethod) {
+                            module.login.valid();
+                        } else if ('menu' == currentModule && 'list' == initMethod) {
                             module.menu.list();
                         } else if ('menu' == currentModule && 'add' == initMethod) {
                             module.menu.add(id);
