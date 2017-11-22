@@ -5,6 +5,7 @@ import com.wind.auth.common.Constants;
 import com.wind.auth.model.User;
 import com.wind.auth.service.IUserService;
 import com.wind.common.ErrorCode;
+import com.wind.common.Status;
 import com.wind.utils.CookieUtil;
 import com.wind.utils.JsonResponseUtil;
 import com.wind.utils.MD5Util;
@@ -50,6 +51,9 @@ public class LoginController {
             User user = userService.findByUsername(username);
             if (user == null || !user.getPassword().equals(MD5Util.MD5(password))) {
                 return JsonResponseUtil.fail(ErrorCode.PARAM_ERROR);
+            }
+            if(user.getStatus()== Status.DISABLED.getValue()) {
+                return JsonResponseUtil.fail(ErrorCode.DISABLED);
             }
             StringBuilder sb = new StringBuilder();
             sb.append(MD5Util.MD5(username));

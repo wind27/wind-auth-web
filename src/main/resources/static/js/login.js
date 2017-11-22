@@ -65,6 +65,8 @@ define(function () {
                         alert("系统异常!!!");
                     } else if (result.code == 3) {
                         alert("用户名或密码错误!!!");
+                    } else if (result.code == 6) {
+                        alert("账号已被禁用!!!");
                     }
                 }
             });

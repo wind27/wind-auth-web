@@ -35,14 +35,12 @@ require(['jquery', 'jquery_validate', 'juicer'], function ($, jquery_validate, t
                         module = target;
                         if ('login' == currentModule && 'valid' == initMethod) {
                             module.login.valid();
+                        } else if ('user' == currentModule && 'list' == initMethod) {
+                            module.user.list();
                         } else if ('menu' == currentModule && 'list' == initMethod) {
                             module.menu.list();
-                        } else if ('menu' == currentModule && 'add' == initMethod) {
-                            module.menu.add(id);
-                        } else if ('menu' == currentModule && 'edit' == initMethod) {
-                            module.menu.edit(id);
-                        } else if ('menu' == currentModule && 'detail' == initMethod) {
-                            module.menu.detail(id);
+                        } else if ('role' == currentModule && 'list' == initMethod) {
+                            module.role.list();
                         }
                     }
                 );

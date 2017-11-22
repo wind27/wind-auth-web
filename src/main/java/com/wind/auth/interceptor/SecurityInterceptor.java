@@ -43,7 +43,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
             if(decodeSlices.length==4 && StringUtils.isNumeric(decodeSlices[2])) {
                 Long id = Long.parseLong(decode.split("_")[2]);
                 User user = userService.findById(id);
-                if(user!=null&& user.getStatus()== Status.ENABLED.getValue()) {
+                if(user!=null) {
                     isLogin = true;
                 }
             }

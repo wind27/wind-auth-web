@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexController {
     private static Logger logger = LoggerFactory.getLogger(IndexController.class);
 
-    //  登录页
+    // 登录页
     @RequestMapping(value = "/login")
     public String login() {
         return "login";
     }
 
-    //  首页
+    // 首页
     @RequestMapping("/")
     public String homepage(Model model, @RequestParam(value = "name", required = false) String name) {
         if (StringUtils.isEmpty(name)) {
@@ -35,7 +35,7 @@ public class IndexController {
         return "index";
     }
 
-    //  菜单管理页面跳转 start
+    // 菜单管理页面跳转 start
     @AuthPermission(value = "auth.menu.index")
     @RequestMapping("/menu")
     public String menu() {
@@ -59,47 +59,55 @@ public class IndexController {
     public String detail() {
         return "menu/detail";
     }
-    //  菜单管理页面跳转 end
+    // 菜单管理页面跳转 end
 
-    //  应用管理页面跳转 start
+    // 用户管理页面跳转 start
+    @AuthPermission(value = "auth.user.list")
+    @RequestMapping("/user")
+    public String userList() {
+        return "user/index";
+    }
+    // 用户管理页面跳转 end
+
+    // 应用管理页面跳转 start
     @AuthPermission(value = "auth.app.list")
     @RequestMapping("/app")
-    public String app(Model model) {
+    public String appList() {
         return "app/index";
     }
-    //  应用管理页面跳转 end
+    // 应用管理页面跳转 end
 
-    //  用户组管理页面跳转 start
+    // 用户组管理页面跳转 start
     @AuthPermission(value = "auth.group.list")
     @RequestMapping("/group")
-    public String group(Model model) {
+    public String groupList() {
         return "group/index";
     }
-    //  用户组管理页面跳转 end
+    // 用户组管理页面跳转 end
 
-    //  角色页面跳转 start
+    // 角色页面跳转 start
     @AuthPermission(value = "auth.role.list")
     @RequestMapping("/role")
-    public String role(Model model) {
+    public String roleList() {
         return "role/index";
     }
-    //  角色页面跳转 end
+    // 角色页面跳转 end
 
-    //  权限管理页面跳转 start
+    // 权限管理页面跳转 start
     @AuthPermission(value = "auth.permission.list")
     @RequestMapping("/permission")
-    public String permission(Model model) {
+    public String permissionList() {
         return "permission/index";
     }
-    //  权限管理页面跳转 end
+    // 权限管理页面跳转 end
 
-    //  临时测试
+    // 临时测试
     @RequestMapping("/imageShow")
     public String imageShow(Model model) {
         return "imageShow";
     }
 
-    //  没权限页
+    // 没权限页
     @RequestMapping("/nopermission")
     public String nopermission(Model model) {
         return "nopermission";
