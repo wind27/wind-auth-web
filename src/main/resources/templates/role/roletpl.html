@@ -4,7 +4,7 @@
         <div class="container_header_info">角色列表</div>
         <hr style="color: #987cb9;"/>
         <form>
-            <input type="button" class="form_add_button" onclick="module.role.add()" th:value="新增" />
+            <input type="button" class="form_add_button" onclick="module.role.add()" th:value="新增"/>
         </form>
         <table border="1" cellpadding="3" cellspacing="0" style="">
             <tr>
@@ -35,19 +35,51 @@
         <div class="container_header_info">角色新增<span onclick="module.role.list()">返回</span></div>
         <form id="form_role_add">
             <p>
-                <lable>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名称:</lable>
+                <lable>名称:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
                 <input type="input" name="name"/>
             </p>
             <p>
-                <lable>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;状态:</lable>
+                <lable>状态:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</lable>
                 <select name="status">
                     <option value="1">启用</option>
                     <option value="0">禁用</option>
                 </select>
             </p>
+
             <p>
-                <input type="button" class="form_save_button" onclick="module.role.save()" th:value="保存" />
-                <input type="button" class="form_reset_button" onclick="module.role.reset()" th:value="重置" />
+                <div>
+            <lable>角色权限:</lable>
+            <table>
+                <tr>
+                    <th align="center"><label>待选权限</label></th>
+                    <th>&nbsp;</th>
+                    <th align="center"><label>已选权限</label></th>
+                </tr>
+                <tr>
+                    <td align="center">
+                        <select name="all_permission" size="10">
+                            <option value="auth.user.list">用户列表</option>
+                            <option value="auth.user.add">用户新增</option>
+                            <option value="auth.user.edit">用户编辑</option>
+                            <option value="auth.user.status.change">用户启用/停用</option>
+                        </select>
+                    </td>
+                    <td></td>
+                    <td align="center">
+                        <select name="all_permission" size="10">
+                            <option value="auth.user.list">用户列表</option>
+                            <option value="auth.user.add">用户新增</option>
+                            <option value="auth.user.edit">用户编辑</option>
+                            <option value="auth.user.status.change">用户启用/停用</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+            </p>
+            <p>
+                <input type="button" class="form_save_button" onclick="module.role.save()" th:value="保存"/>
+                <input type="button" class="form_reset_button" onclick="module.role.reset()" th:value="重置"/>
             </p>
         </form>
     </script>
@@ -70,8 +102,8 @@
                 </select>
             </p>
             <p>
-                <input type="button" class="form_save_button" onclick="module.role.update()" th:value="保存" />
-                <input type="button" class="form_reset_button" onclick="module.role.edit(${id})" th:value="重置" />
+                <input type="button" class="form_save_button" onclick="module.role.update()" th:value="保存"/>
+                <input type="button" class="form_reset_button" onclick="module.role.edit(${id})" th:value="重置"/>
             </p>
         </form>
     </script>
