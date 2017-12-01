@@ -1,4 +1,4 @@
-FROM qianchun27/centos7-jdk8
+FROM qianchun27/centos7-jdk8:0.0.1
 
 MAINTAINER qianchun, qinachun@huli.com
 
