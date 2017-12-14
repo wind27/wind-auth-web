@@ -49,7 +49,7 @@ define(function () {
                 'username': username,
                 'password': password
             };
-            var request_url = '/login';
+            var request_url = '/auth/login';
             $.ajax({
                 url: request_url,
                 type: "post",
@@ -82,7 +82,7 @@ define(function () {
          * 退出登录
          */
         logout: function () {
-            var request_url = '/logout';
+            var request_url = '/auth/logout';
             $.ajax({
                 url: request_url,
                 type: "post",
@@ -90,7 +90,7 @@ define(function () {
                 success: function (result) {
                     if (result.code == 0) {
                         alert("退出登录成功!!!");
-                        window.location.href = "/login";
+                        window.location.href = "/auth/login";
                     }
                 }
             });

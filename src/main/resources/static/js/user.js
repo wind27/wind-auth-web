@@ -44,7 +44,7 @@ define(['jquery_validate'], function () {
          * @param id
          */
         edit: function (id) {
-            var request_url = '/user/edit/' + id;
+            var request_url = '/auth/user/edit/' + id;
             $.ajax({
                 url: request_url,
                 type: "get",
@@ -65,7 +65,7 @@ define(['jquery_validate'], function () {
                 return;
             }
 
-            var request_url = '/user/save/';
+            var request_url = '/auth/user/save/';
             var username = $(':input[name=username]').val();
             var realname = $(':input[name=realname]').val();
             var mobile = $(':input[name=mobile]').val();
@@ -102,7 +102,7 @@ define(['jquery_validate'], function () {
             if (!$("#form_user_edit").valid()) {
                 return;
             }
-            var request_url = '/user/update/';
+            var request_url = '/auth/ser/update/';
             var id = $(':input[name=id]').val();
             var username = $(':input[name=username]').val();
             var realname = $(':input[name=realname]').val();
@@ -138,7 +138,7 @@ define(['jquery_validate'], function () {
          * @param id
          */
         detail: function (id) {
-            var request_url = '/user/detail/' + id;
+            var request_url = '/auth/user/detail/' + id;
             $.ajax({
                 url: request_url,
                 type: "get",
@@ -167,7 +167,7 @@ define(['jquery_validate'], function () {
          * @param status
          */
         changeStatus: function (id, status) {
-            var request_url = '/user/status/change/' + id + "?status=" + status;
+            var request_url = '/auth/user/status/change/' + id + "?status=" + status;
             $.ajax({
                 url: request_url,
                 type: "post",
@@ -184,7 +184,7 @@ define(['jquery_validate'], function () {
          * 获取菜单
          */
         list: function () {
-            var request_url = '/user/list';
+            var request_url = '/auth/user/list';
             $.ajax({
                 url: request_url,
                 type: "get",

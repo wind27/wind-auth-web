@@ -50,15 +50,15 @@ public class SecurityInterceptor implements HandlerInterceptor {
         }
 
         //判断是否未登录状态,访问非登录url, 重定向至登录页面
-        if(!httpServletRequest.getRequestURI().equals("/login") && !isLogin) {
+        if(!httpServletRequest.getRequestURI().equals("/auth/login") && !isLogin) {
             logger.info("[权限拦截器] 请求URI={}, method={}, 未登录", httpServletRequest.getRequestURI(), httpServletRequest.getMethod());
-            httpServletResponse.sendRedirect("/login");
+            httpServletResponse.sendRedirect("/auth/login");
         }
         //权限校验
         boolean hasPermission = true;
-        if(!httpServletRequest.getRequestURI().equals("/nopermission") && !hasPermission) {
+        if(!httpServletRequest.getRequestURI().equals("/auth/nopermission") && !hasPermission) {
             logger.info("[权限拦截器] 请求URI={}, method={}, 没有权限", httpServletRequest.getRequestURI(), httpServletRequest.getMethod());
-            httpServletResponse.sendRedirect("/nopermission");
+            httpServletResponse.sendRedirect("/auth/nopermission");
         }
         return true;
     }
