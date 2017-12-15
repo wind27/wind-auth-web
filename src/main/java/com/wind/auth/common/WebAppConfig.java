@@ -19,12 +19,12 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(this.createSecurityInterceptor());
+//        registry.addInterceptor(this.createSecurityInterceptor());
         super.addInterceptors(registry);
     }
 
-    @Bean
-    public SecurityInterceptor createSecurityInterceptor() {
-        return new SecurityInterceptor();
-    }
+//    @Bean
+//    public SecurityInterceptor createSecurityInterceptor() {
+//        return new SecurityInterceptor();
+//    }
 }
