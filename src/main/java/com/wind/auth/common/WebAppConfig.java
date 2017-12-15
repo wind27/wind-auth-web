@@ -4,6 +4,7 @@ import com.wind.auth.interceptor.SecurityInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
@@ -22,6 +23,16 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 //        registry.addInterceptor(this.createSecurityInterceptor());
         super.addInterceptors(registry);
     }
+
+//    addResourceHandlers
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/auth/**").addResourceLocations("classpath:/");
+        super.addResourceHandlers(registry);
+    }
+
+
 
 //    @Bean
 //    public SecurityInterceptor createSecurityInterceptor() {

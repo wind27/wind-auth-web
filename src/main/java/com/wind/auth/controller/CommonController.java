@@ -1,16 +1,10 @@
 package com.wind.auth.controller;
 
 import com.wind.auth.model.Menu;
-import com.wind.auth.model.User;
 import com.wind.auth.service.IMenuService;
 import com.wind.auth.service.IUserService;
-import com.wind.common.ErrorCode;
 import com.wind.utils.JsonResponseUtil;
 import jdk.nashorn.internal.ir.annotations.Reference;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

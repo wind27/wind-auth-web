@@ -4,7 +4,7 @@ define(function () {
          * 获取导航
          */
         getNav: function () {
-            var url = '/auth/navigation';
+            var url = '/navigation';
             $.ajax({
                 url: url,
                 type: "get",
@@ -25,7 +25,7 @@ define(function () {
          * 退出登录
          */
         logout: function () {
-            var request_url = '/auth/logout';
+            var request_url = '/logout';
             $.ajax({
                 url: request_url,
                 type: "post",
@@ -33,7 +33,7 @@ define(function () {
                 success: function (result) {
                     if (result.code == 0) {
                         alert("退出登录成功!!!");
-                        window.location.href = "auth/login";
+                        window.location.href = "login";
                     }
                 }
             });

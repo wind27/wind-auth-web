@@ -34,7 +34,7 @@ define(['jquery_validate'], function () {
          * @param id
          */
         edit: function (id) {
-            var request_url = '/auth/menu/edit/' + id;
+            var request_url = '/menu/edit/' + id;
             $.ajax({
                 url: request_url,
                 type: "get",
@@ -54,7 +54,7 @@ define(['jquery_validate'], function () {
             if (!$("#form_menu_add").valid()) {
                 return;
             }
-            var request_url = '/auth/menu/save/';
+            var request_url = '/menu/save/';
             var name = $(':input[name=name]').val();
             var url = $(':input[name=url]').val()//唯一性校验
             var appId = $("select[name='appId']").val();
@@ -90,7 +90,7 @@ define(['jquery_validate'], function () {
             if (!$("#form_menu_edit").valid()) {
                 return;
             }
-            var request_url = '/auth/menu/update/';
+            var request_url = '/menu/update/';
             var id = $(':input[name=id]').val();
             var name = $(':input[name=name]').val();
             var url = $(':input[name=url]').val()//唯一性校验
@@ -125,7 +125,7 @@ define(['jquery_validate'], function () {
          * @param id
          */
         detail: function (id) {
-            var request_url = '/auth/menu/detail/' + id;
+            var request_url = '/menu/detail/' + id;
             $.ajax({
                 url: request_url,
                 type: "get",
@@ -153,7 +153,7 @@ define(['jquery_validate'], function () {
          * @param id
          */
         enable: function (id) {
-            var request_url = '/auth/menu/enable/' + id;
+            var request_url = '/menu/enable/' + id;
             $.ajax({
                 url: request_url,
                 type: "get",
@@ -171,7 +171,7 @@ define(['jquery_validate'], function () {
          * @param id
          */
         disable: function (id) {
-            var request_url = '/auth/menu/disable/' + id;
+            var request_url = '/menu/disable/' + id;
             $.ajax({
                 url: request_url,
                 type: "get",
@@ -188,7 +188,7 @@ define(['jquery_validate'], function () {
          * 获取菜单
          */
         list: function () {
-            var request_url = '/auth/menu/list';
+            var request_url = '/menu/list';
             $.ajax({
                 url: request_url,
                 type: "get",

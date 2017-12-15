@@ -3,7 +3,6 @@ package com.wind.auth.controller;
 import com.alibaba.dubbo.config.annotation.Reference;
 import com.alibaba.fastjson.JSONObject;
 import com.wind.annotation.AuthPermission;
-import com.wind.auth.model.Menu;
 import com.wind.auth.model.User;
 import com.wind.auth.service.IUserService;
 import com.wind.common.ErrorCode;
@@ -11,7 +10,6 @@ import com.wind.common.Status;
 import com.wind.utils.JsonResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 

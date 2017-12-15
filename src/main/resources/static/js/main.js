@@ -3,7 +3,7 @@
  */
 
 require.config({
-    baseUrl: '/auth/js',
+    baseUrl: '/js',
     paths: {
         jquery: 'lib/jquery1.10.2.min',
         jquery_validate: 'lib/jquery.validate.min',

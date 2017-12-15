@@ -30,7 +30,7 @@ define(['jquery_validate'], function () {
          * @param id
          */
         edit: function (id) {
-            var request_url = '/auth/role/edit/' + id;
+            var request_url = '/role/edit/' + id;
             $.ajax({
                 url: request_url,
                 type: "get",
@@ -51,7 +51,7 @@ define(['jquery_validate'], function () {
                 return;
             }
 
-            var request_url = '/auth/role/save/';
+            var request_url = '/role/save/';
             var name = $(':input[name=name]').val();
             var status = $("select[name='status']").val();
 
@@ -82,7 +82,7 @@ define(['jquery_validate'], function () {
             if (!$("#form_role_edit").valid()) {
                 return;
             }
-            var request_url = '/auth/role/update/';
+            var request_url = '/role/update/';
             var id = $(':input[name=id]').val();
             var name = $(':input[name=name]').val();
             var status = $("select[name='status']").val();
@@ -112,7 +112,7 @@ define(['jquery_validate'], function () {
          * @param id
          */
         detail: function (id) {
-            var request_url = '/auth/role/detail/' + id;
+            var request_url = '/role/detail/' + id;
             $.ajax({
                 url: request_url,
                 type: "get",
@@ -141,7 +141,7 @@ define(['jquery_validate'], function () {
          * @param status
          */
         changeStatus: function (id, status) {
-            var request_url = '/auth/role/status/change/' + id + "?status=" + status;
+            var request_url = '/role/status/change/' + id + "?status=" + status;
             $.ajax({
                 url: request_url,
                 type: "post",
@@ -158,7 +158,7 @@ define(['jquery_validate'], function () {
          * 获取菜单
          */
         list: function () {
-            var request_url = '/auth/role/list';
+            var request_url = '/role/list';
             $.ajax({
                 url: request_url,
                 type: "get",

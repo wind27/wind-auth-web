@@ -5,7 +5,6 @@ import com.alibaba.dubbo.config.annotation.Reference;
 import com.wind.auth.common.Constants;
 import com.wind.auth.model.User;
 import com.wind.auth.service.IUserService;
-import com.wind.common.Status;
 import com.wind.utils.CookieUtil;
 import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -50,15 +48,15 @@ public class SecurityInterceptor implements HandlerInterceptor {
         }
 
         //判断是否未登录状态,访问非登录url, 重定向至登录页面
-        if(!httpServletRequest.getRequestURI().equals("/auth/login") && !isLogin) {
+        if(!httpServletRequest.getRequestURI().equals("/login") && !isLogin) {
             logger.info("[权限拦截器] 请求URI={}, method={}, 未登录", httpServletRequest.getRequestURI(), httpServletRequest.getMethod());
-            httpServletResponse.sendRedirect("/auth/login");
+            httpServletResponse.sendRedirect("/login");
         }
         //权限校验
         boolean hasPermission = true;
-        if(!httpServletRequest.getRequestURI().equals("/auth/nopermission") && !hasPermission) {
+        if(!httpServletRequest.getRequestURI().equals("/nopermission") && !hasPermission) {
             logger.info("[权限拦截器] 请求URI={}, method={}, 没有权限", httpServletRequest.getRequestURI(), httpServletRequest.getMethod());
-            httpServletResponse.sendRedirect("/auth/nopermission");
+            httpServletResponse.sendRedirect("/nopermission");
         }
         return true;
     }
