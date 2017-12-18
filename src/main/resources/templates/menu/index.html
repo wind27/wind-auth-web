@@ -12,7 +12,8 @@
 <div th:include="menu/menutpl :: tpl_menu_detail"></div>
 <div th:include="menu/menutpl :: tpl_menu_list"></div>
 <!-- header start -->
-<div th:class="header" th:include="common/header :: header (${menus}, ${name}) "></div>
+<!--<div th:class="header" th:include="common/header :: header (${menus}, ${name}) "></div>-->
+<div th:class="header" th:include="common/header :: header"></div>
 <!-- header end -->
 
 <!-- container start -->
@@ -20,7 +21,8 @@
 <!-- container end -->
 
 <!-- footer start -->
-<div th:class="footer" th:include="common/footer :: copyright (${name}) "></div>
+<!--<div th:class="footer" th:include="common/footer :: copyright (${name}) "></div>-->
+<div th:class="footer" th:include="common/footer :: copyright"></div>
 <!-- footer end -->
 </body>
 </html>

@@ -28,7 +28,7 @@ public class WebAppConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/auth/**").addResourceLocations("classpath:/");
+//        registry.addResourceHandler("/auth/**").addResourceLocations("classpath:/");
         super.addResourceHandlers(registry);
     }
 

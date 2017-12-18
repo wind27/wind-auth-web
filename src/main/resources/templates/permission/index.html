@@ -3,15 +3,12 @@
 <head>
     <title>权限管理</title>
     <link th:href="@{'/css/common/common.css?v=123'+${v}}" rel="stylesheet"/>
-    <script src="/js/lib/require.js" data-main="/js/main.js?v=3sw12sad2ss1s322112" id="current-js" current-module ="menu" init-method="list" async="true"></script>
+    <script src="/js/lib/require.js" data-main="/js/main.js?v=3sw12sad2ss1s322112" id="current-js" current-module ="permission" init-method="list" async="true"></script>
 </head>
 <body>
-<div th:include="menu/menutpl :: tpl_menu_add"></div>
-<div th:include="menu/menutpl :: tpl_menu_edit"></div>
-<div th:include="menu/menutpl :: tpl_menu_detail"></div>
-<div th:include="menu/menutpl :: tpl_menu_list"></div>
+<div th:include="menu/menutpl :: tpl_permission_list"></div>
 <!-- header start -->
-<div th:class="header" th:include="common/header :: header (${menus}, ${name}) "></div>
+<div th:class="header" th:include="common/header :: header"></div>
 <!-- header end -->
 
 <!-- container start -->
@@ -19,9 +16,7 @@
 <!-- container end -->
 
 <!-- footer start -->
-<div th:class="footer" th:include="common/footer :: copyright (${name}) "></div>
+<div th:class="footer" th:include="common/footer :: copyright"></div>
 <!-- footer end -->
 </body>
-<br/>
-<a th:href="@{/}">返回首页</a>
 </html>
